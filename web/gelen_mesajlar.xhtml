@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body style="padding-top: 0px; background-color: #add;">
+        <b:navBar brand="Mesaj Sistemi" brandHref="#" inverse="true">
+            <b:navbarLinks>
+                <b:navLink value="Mesaj Gönder" href="#{request.contextPath}/faces/mesaj_gonder.xhtml"></b:navLink>
+                <b:navLink value="Gelen Mesajlar" href="#{request.contextPath}/faces/gelen_mesajlar.xhtml"></b:navLink>
+                <b:navLink value="Dosya Takip" href="#{request.contextPath}/faces/dosya_takip.xhtml"></b:navLink>
+               <h:form styleClass="navbar-form navbar-right">
+                    <div class="form-group">
+                        <b:commandButton value="Çıkış" look="primary"
+                                         action="#{login.logout()}" p:data-target="#canCloseModel" p:data-toggle="modal" 
+                                         icon="logout" iconAlign="right" />
+                    </div> 
+                </h:form>
+            </b:navbarLinks>
+        </b:navBar>
+        <b:form>
+            <h:panelGrid columns="2" cellpadding="10">
+                <h:form> 
+                    <p:dataTable id="screen" var="c" value="#{gelenMesaj.list}" >
+                        <b:dataTableColumn value="#{c.sender_name}" />
+                        <b:dataTableColumn value="#{c.receiver_name}" />
+                        <b:dataTableColumn value="#{c.date}" />
+                        <b:dataTableColumn value="#{c.message}" />
+                    </p:dataTable>
+                </h:form> 
+            </h:panelGrid>
+        </b:form>
+    </h:body>
+</html>

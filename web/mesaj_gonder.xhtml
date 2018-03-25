@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+       xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Mesaj Gönderme</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body style="padding-top: 0px; background-color: #add;">
+        <h:form>
+            <b:navBar brand="Mesaj Sistemi" brandHref="#" inverse="true">
+                <b:navbarLinks>
+                    <b:navLink value="Mesaj Gönder" href="#{request.contextPath}/faces/mesaj_gonder.xhtml"></b:navLink>
+                    <b:navLink value="Gelen Mesajlar" href="#{request.contextPath}/faces/gelen_mesajlar.xhtml"></b:navLink>
+                    <b:navLink value="Dosya Takip" href="#{request.contextPath}/faces/dosya_takip.xhtml"></b:navLink>
+                    <b:dropMenu value="Diğer">
+                        <b:navLink value="Kullanıcı Bilgileri" href="#"></b:navLink>
+                        <b:navLink></b:navLink>
+                        <b:navLink value="Çıkış" href="#{request.contextPath}/faces/login.xhtml"></b:navLink>
+                    </b:dropMenu>
+                </b:navbarLinks>
+            </b:navBar>
+        </h:form>
+        <h:form>
+            <b:well style="border-color: black">
+            <b:row style="padding-left: 3px">
+                <b:inputText placeholder="Metin giriniz" span="6" value="#{gonder.message}"></b:inputText>
+
+                <b:selectOneMenu span="3" value="#{gonder.receiver}" id="brandID" >
+                    <f:selectItem itemLabel="Kullanıcı Seçiniz" />
+                    <f:selectItems  value="#{gonderMesaj.list}"  var ="c" itemLabel="#{c.username}" itemValue="#{c.user_id}"  />
+                </b:selectOneMenu>
+                <p:commandButton action="#{gonder.setGonder()}" value="Gönder" ajax="true"></p:commandButton>
+            </b:row>
+                </b:well>
+        </h:form>
+    </h:body>
+</html>
